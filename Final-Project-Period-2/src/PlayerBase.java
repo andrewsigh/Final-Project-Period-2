@@ -18,6 +18,11 @@ public class PlayerBase
 		this.numStones = numStones;
 	}
 	
+	public void addStone()
+	{
+		numStones++;
+	}
+	
 	public int checkResult(PlayerBase other)
 	{
 		if (other.getNumStones() < this.getNumStones())

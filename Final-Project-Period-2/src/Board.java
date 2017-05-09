@@ -10,13 +10,13 @@ public class Board
 		enemyBase = new PlayerBase();
 		winNum = 0;
 		holes = new Holes[12];
-		for(int loop = 0; loop < holes.size(); loop++)
+		for(int loop = 0; loop < holes.length; loop++)
 		{
 			holes[loop] = new Holes();
 		}
 	}
 	
-	public int winner()
+	public void imageForWinner()
 	{
 		winNum = userBase.checkResult(enemyBase);
 		if(winNum == 1)
