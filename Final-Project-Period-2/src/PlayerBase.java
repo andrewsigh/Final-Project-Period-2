@@ -1,5 +1,5 @@
 
-public class PlayerBase 
+public class PlayerBase extends Holes
 {
 	private int numStones;
 	

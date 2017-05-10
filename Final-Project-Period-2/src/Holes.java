@@ -13,13 +13,6 @@ public class Holes
 		return stones;
 	}
 	
-	public boolean isEmpty()
-	{
-		if(stones == 0)
-			return true;
-		return false;
-	}
-	
 	public void addStone()
 	{
 		stones++;
@@ -28,5 +21,12 @@ public class Holes
 	public void removeStone()
 	{
 		stones--;
+	}
+	
+	public boolean isEmpty()
+	{
+		if(stones == 0)
+			return true;
+		return false;
 	}
 }

@@ -1,11 +1,11 @@
-
 public class AI 
 {
 	private boolean hardMode;
 	
 	public AI(Boolean difficulty)
 	{
-		hardMode = difficulty; //true if hard, false if easy
+		hardMode = difficulty; //difficulty is true if hardMode is selected,
+							   //false if easy
 	}
 	
 	public void takeTurn(Holes[] holes)

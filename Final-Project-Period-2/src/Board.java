@@ -4,6 +4,7 @@ public class Board
 	private PlayerBase userBase, enemyBase;
 	private Holes[] holes;
 	private int winNum;
+	
 	public Board()
 	{
 		userBase = new PlayerBase();
