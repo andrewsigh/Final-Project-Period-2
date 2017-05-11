@@ -1,8 +1,6 @@
 import java.awt.*;          // access to Container
 import java.awt.event.*;    // access to WindowAdapter, WindowEvent
 import javax.swing.*;       // access to JFrame and Jcomponents
-import javax.swing.event.*;
-import java.applet.Applet;
 
 public class StartMenu 
 {
@@ -10,6 +8,7 @@ public class StartMenu
 	private JRadioButton jradbutton2;
 	private JRadioButton jradbutton3;
 	private JRadioButton jradbutton4;
+	
 	public static void main(String[] args)
 	{
 		StartMenu menu = new StartMenu();

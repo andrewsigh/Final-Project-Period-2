@@ -1,12 +1,10 @@
 
-public class Holes 
+public class Holes
 {
 	private int count;
-	private boolean isEmpty;
 	public Holes()
 	{
 		count = 4;
-		isEmpty = false;
 	}
 	
 	public int getStones()
@@ -19,9 +17,16 @@ public class Holes
 		count++;
 	}
 	
-	public void moveHole()
+	public void removeStone()
 	{
-		count = 0;
-		isEmpty = true;
+		count--;
+	}
+	
+	public boolean isEmpty()
+	{
+		if(count == 0)
+			return true;
+		return false;
+
 	}
 }
