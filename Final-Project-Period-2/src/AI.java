@@ -1,5 +1,6 @@
 public class AI
 {
+	//6 = user storage, 13 = enemy storage
 	private boolean hardMode;
 	
 	public AI(Boolean difficulty)
@@ -17,15 +18,13 @@ public class AI
 			
 			for(int loop = random + 1; loop <= holes.length; loop++)
 			{
-				while(holes[random].getStones() > 0)
+				while(stones > 0)
 				{
-					if(loop == 6 || loop == 13)
+					if (loop != 6)
 					{
-						//puts a stone into the players mancala
-						//also needs to know whose turn it is
-					}
-					holes[loop].addStone();
-					holes[random].removeStone();				
+						holes[loop].addOneStone();
+						stones--;
+					}				
 				}
 			}
 		}

@@ -1,11 +1,13 @@
-
 public class PlayerBase extends Holes
 {
 	private int numStones;
+	private int pLoc;
 	
-	public PlayerBase()
+	public PlayerBase(int l)
 	{
+		super(l);
 		numStones = 0;
+		setpLoc(l);
 	}
 
 	public int getNumStones() 
@@ -18,9 +20,9 @@ public class PlayerBase extends Holes
 		this.numStones = numStones;
 	}
 	
-	public void addStone()
+	public void addStonesPerm(int added)
 	{
-		numStones++;
+		numStones += added;
 	}
 	
 	public int checkResult(PlayerBase other)
@@ -36,10 +38,12 @@ public class PlayerBase extends Holes
 		else
 			return -1;
 	}
-	
+
+	public int getpLoc() {
+		return pLoc;
+	}
+
+	public void setpLoc(int pLoc) {
+		this.pLoc = pLoc;
+	}
 }
-//Use to count stones on BOARD: 
-//Keeps track of number of stones in PlayerBase. 
-//When no more stones are available on one/both side/s, 
-//the PlayerBase with the higher number is returned as the winner. 
-//If both sides have equal numbers, then null (or something) is returned.

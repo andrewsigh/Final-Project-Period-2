@@ -1,32 +1,48 @@
 
-public class Holes
+public class Holes 
 {
-	private int count;
-	public Holes()
+	private int stones;
+	private int loc;
+	
+	public Holes(int l)
 	{
-		count = 4;
+		stones = 4;
+		loc = l;
 	}
 	
 	public int getStones()
 	{
-		return count;
+		return stones;
 	}
 	
-	public void addStone()
+	public void addStone(int num)
 	{
-		count++;
+		stones += num;
 	}
 	
-	public void removeStone()
+	public void addOneStone()
 	{
-		count--;
+		stones++;
+	}
+	
+	public void removeStone(int removed)
+	{
+		stones -= removed;
 	}
 	
 	public boolean isEmpty()
 	{
-		if(count == 0)
+		if(stones == 0)
 			return true;
 		return false;
+	}
 
+	public int getLoc() {
+		return loc;
+	}
+
+	public void setLoc(int loc) {
+		this.loc = loc;
 	}
 }
+
