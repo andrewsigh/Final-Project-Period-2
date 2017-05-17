@@ -1,20 +1,23 @@
 public class AI
 {
 	//6 = user storage, 13 = enemy storage
-	private boolean hardMode;
 	
-	public AI(Boolean difficulty)
+	public AI()
 	{
-		hardMode = difficulty; //difficulty is true if hardMode is selected,
-							   //false if easy
+		//what goes here?
+		//maybe if person chooses 1 player, bring up some jButtons
 	}
 	
 	public void takeTurn(Holes[] holes)
 	{
-		if(hardMode == false) //easy mode randomly selects 1 of 6 cells on its side and moves if cell has stones
-		{
+		
 			int random = (int) (Math.random() * 6);
 			int stones = holes[random].getStones();
+			while (stones == 0)
+			{ 
+				random = (int) (Math.random() * 6);
+				stones = holes[random].getStones();
+			}
 			
 			for(int loop = random + 1; loop <= holes.length; loop++)
 			{
@@ -26,11 +29,6 @@ public class AI
 						stones--;
 					}				
 				}
-			}
-		}
-		else if(hardMode == true)
-		{
-			//still needs to be done
 		}
 	}
 }

@@ -17,7 +17,7 @@ public class Board
 	public Board()
 	{
 		winNum = 0;
-		holes = new Holes[13];
+		holes = new Holes[14];
 		for(int loop = 0; loop <= holes.length; loop++)
 		{
 			if(loop == 6 || loop == 13)
@@ -99,7 +99,7 @@ public class Board
 	
 	public void moveAllStones(PlayerBase Storage)
 	{
-		if(Storage.equals(userBase) == true)
+		if(Storage.equals(userBase) == true && Win == true)
 		{
 			for(int x = 0; x <= 5; x++)
 			{
@@ -123,7 +123,7 @@ public class Board
 	
 	public void emptyCheck(int cellIndex)
 	{
-		if(holes[cellIndex].getStones() == 0)
+		if(holes[cellIndex].getStones() == 1)
 		{
 			if(cellIndex == 0)
 			{
@@ -217,5 +217,48 @@ public class Board
 		//to your storage.
 		
 	}
-
+	
+	public boolean extraTurn(int lastHole, int turn)
+	{
+		int last = lastHole;
+		int theTurn = turn;
+		//checks to see if last stone was put into player/enemy Mancala
+		//on the player/enemy respected turn
+		//displays extra turn graphic if extra turn is true
+		//if extraturn is true, grants another turn, else swaps turns like normal
+		if(lastStonePut(last) == 6 && theTurn == 1)
+		{
+			return true;
+			//needs another && statement inside the if statement
+			//to determine whose turn it is so that the player's
+			//storage will not be messed up
+		}
+		else if (lastStonePut(lastHole) == 13 && theTurn == 2)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public int lastStonePut(int holeNumber)
+	{
+		int lastPut = holeNumber;
+		return lastPut;
+		//this determines where the last stone was put in order to
+		//grant extra turns or more. 
+	}
+	
+	public void move() //player chooses cell by clicking on it
+	{
+		//player clicks cell he/she wants to move
+		//player cannot click on the STORAGE
+		//moves the number of stones
+		//removes number of stones from the cell
+		//swaps player turn
+		//needs to be incorporated in MAIN in order for the game to go on is 
+		//what I'm thinking
+	}
 }
