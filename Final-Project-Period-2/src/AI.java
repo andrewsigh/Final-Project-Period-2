@@ -33,14 +33,6 @@ public class AI
 	}
 }
 //Computer generated player, manually plays the game in the place of another player.
-//Can be set to easy/hard. 
-
 //Easy mode is where the computer randomly selects 1 of the 6 cells on its side
 //and moves (if the cell has any stones). 
 //Continues moving until turn/game ends. 
-
-//Hard mode keeps track of more intelligent moves, such as scanning
-//the board and seeing what move would bring another turn or capture stones on the
-//opposite side (prioritize extra moves (if multiple found, prioritize
-//the one closest to the AI’s home base, then check again), then capture moves 
-//(and if none), then regular moves). 

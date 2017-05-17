@@ -1,5 +1,6 @@
 import java.awt.*;          // access to Container
 import java.awt.event.*;    // access to WindowAdapter, WindowEvent
+
 import javax.swing.*;       // access to JFrame and Jcomponents
 public class StartMenu implements ActionListener
 {
@@ -93,13 +94,20 @@ public class StartMenu implements ActionListener
         panel1.add(startGame);
         panel1.add(instructions);
         
+        ClassLoader clder = this.getClass().getClassLoader();
+		ImageIcon picture = new ImageIcon(clder.getResource("Mancala.png"));
+        JLabel pictureLabel = new JLabel(picture);
+        contain.add(pictureLabel);
         contain.add(onePlayer);
         contain.add(twoPlayer);
         contain.add(startGame);
         contain.add(instructions);
         
+   
+		
+        
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame1.setSize(300, 100);
+        frame1.setSize(1500, 800);
         frame1.setVisible(true);
 
 	}

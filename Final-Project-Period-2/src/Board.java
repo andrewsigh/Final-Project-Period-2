@@ -31,7 +31,7 @@ public class Board
 	{
 		if(winNum == 1)
 		{
-			//graphics for "winner"
+			
 		}
 		else if(winNum == 0)
 		{
