@@ -26,15 +26,7 @@ public class StartMenu implements ActionListener
 		Object o = event.getSource();
 		 if(o.equals(onePlayer))//.isSelected())
 	        {
-	            //chooses 1 player mode
-			 	//if(easy.isSelected())
-			 	//{
-			 	//	computer = new AI(false);
-			 	//}
-			 	//else if(hard.isSelected())
-			 	//{
-			 	//	computer = new AI(true);
-			 	//}
+			 //AI easy mode only
 	        }
 	        else if(o.equals(twoPlayer))//.isSelected())
 	        {
