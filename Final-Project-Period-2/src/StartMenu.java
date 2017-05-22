@@ -9,9 +9,6 @@ public class StartMenu implements ActionListener
 	private JButton startGame;
 	private JButton instructions;
 	private JTextArea instrArea;
-	private JRadioButton easy;
-	private JRadioButton hard;
-	private AI computer;
 	private int turn;
 	
 	public static void main(String[] args)
@@ -27,6 +24,8 @@ public class StartMenu implements ActionListener
 		 if(o.equals(onePlayer))//.isSelected())
 	        {
 			 //AI easy mode only
+			 //press start game, replaces JFrame with Board image that you
+			 //can interact with, does not leave the startmenu behind
 	        }
 	        else if(o.equals(twoPlayer))//.isSelected())
 	        {
@@ -94,10 +93,7 @@ public class StartMenu implements ActionListener
         contain.add(twoPlayer);
         contain.add(startGame);
         contain.add(instructions);
-        
-   
-		
-        
+ 
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame1.setSize(1500, 800);
         frame1.setVisible(true);
