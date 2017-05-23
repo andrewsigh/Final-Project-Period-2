@@ -42,22 +42,18 @@ public class StartMenu implements ActionListener
 			f.setVisible(true);
 		} 
 		else if (startGame.equals(o)) 
-		{
-			JFrame boardSpace = new JFrame();
-			Container area = boardSpace.getContentPane();
+		{			
+				JFrame boardSpace = new JFrame();
+				Container area = boardSpace.getContentPane();
 			
-			ClassLoader loader = this.getClass().getClassLoader();
-			ImageIcon boardPic = new ImageIcon(loader.getResource("FinalBoard.png"));
-	        JLabel label = new JLabel(boardPic);
-	        area.add(label);
-	        boardSpace.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	        boardSpace.setSize(boardPic.getIconWidth(), boardPic.getIconHeight());
-	        boardSpace.setVisible(true);
-	        boardSpace.setResizable(false);
-			//if (onePlayer.equals(o)) 
-			//{} 
-			//else if (twoPlayer.equals(o)) 
-			//{}
+				ClassLoader loader = this.getClass().getClassLoader();
+				ImageIcon boardPic = new ImageIcon(loader.getResource("FinalBoard.png"));
+				JLabel label = new JLabel(boardPic);
+				area.add(label);
+	        	boardSpace.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	        	boardSpace.setSize(boardPic.getIconWidth(), boardPic.getIconHeight());
+	        	boardSpace.setVisible(true);
+	        	boardSpace.setResizable(false);		
 		}
 	}
 	
