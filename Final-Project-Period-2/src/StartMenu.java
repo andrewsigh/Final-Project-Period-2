@@ -1,8 +1,12 @@
-import java.awt.*;          // access to Container
-import java.awt.event.*;    // access to WindowAdapter, WindowEvent
 
-import javax.swing.*;       // access to JFrame and Jcomponents
-public class StartMenu implements ActionListener
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+//might be helpful at some point: (lots of tutorials and images)
+//http://www.java2s.com/Tutorial/Java/0260__Swing-Event/Catalog0260__Swing-Event.htm
+
+public class StartMenu implements ActionListener 
 {
 	private JRadioButton onePlayer;
 	private JRadioButton twoPlayer;
@@ -10,40 +14,60 @@ public class StartMenu implements ActionListener
 	private JButton instructions;
 	private JTextArea instrArea;
 	private int turn;
-	
-	public static void main(String[] args)
+
+	public static void main(String[] args) 
 	{
 		StartMenu menu = new StartMenu();
-		 JFrame frame = new JFrame("Mancala");
-		 menu.showFrame(frame);
+		JFrame frame = new JFrame("Mancala");
+		menu.showFrame(frame);
 	}
-	
-	public void actionPerformed(ActionEvent event)
+
+	public void actionPerformed(ActionEvent event) //needs to be finished
 	{
 		Object o = event.getSource();
-		 if(o.equals(onePlayer))//.isSelected())
-	        {
-			 //AI easy mode only
-			 //press start game, replaces JFrame with Board image that you
-			 //can interact with, does not leave the startmenu behind
-	        }
-	        else if(o.equals(twoPlayer))//.isSelected())
-	        {
-	        	//chooses 2 player mode
-	        }
-	        else if(o.equals(instructions))//.isSelected())
-	        {
-	        	instructionsDisplay();
-	        }
+		if (o.equals(instructions)) 
+		{
+			JFrame f = new JFrame();
+			Container c = f.getContentPane();
+
+			instrArea = instructionsDisplay();
+
+			c.add(instrArea);
+
+			Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+			
+			f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			f.setSize(585, 510);
+			f.setLocation(dim.width/2 - 292, dim.height/2 - 255);
+			f.setVisible(true);
+		} 
+		else if (startGame.equals(o)) 
+		{
+			JFrame boardSpace = new JFrame();
+			Container area = boardSpace.getContentPane();
+			
+			ClassLoader loader = this.getClass().getClassLoader();
+			ImageIcon boardPic = new ImageIcon(loader.getResource("FinalBoard.png"));
+	        JLabel label = new JLabel(boardPic);
+	        area.add(label);
+	        boardSpace.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	        boardSpace.setSize(boardPic.getIconWidth(), boardPic.getIconHeight());
+	        boardSpace.setVisible(true);
+	        boardSpace.setResizable(false);
+			//if (onePlayer.equals(o)) 
+			//{} 
+			//else if (twoPlayer.equals(o)) 
+			//{}
+		}
 	}
 	
 	public JTextArea instructionsDisplay()
 	{
-		JTextArea instrArea = new JTextArea("How to Play:\n" +
-				"\nInitial Board Setup:" + 
+		JTextArea instrArea = new JTextArea("\tHow to Play:\n" +
+				"\n\tInitial Board Setup:" + 
 				"\nThe Mancala board is made up of two rows of six holes, each hole containing four marbles." + 
 				"\nEach player has a store to their right side of the Mancala board." +
-				"\n\nGameplay:"+
+				"\n\n\tGameplay:"+
 				"\nThe game begins with the user clicking on any one of the holes on his side. +" +
 				"\nThen, moving counterclockwise, one of the stones is deposited in each hole until the stones run out."+
 				"\n\nIf you run into your own store, one piece will be deposited in it."+
@@ -53,81 +77,92 @@ public class StartMenu implements ActionListener
 				"\nin the hole directly opposite, and they are moved to your own store."+
 				"\n\nThe game ends when all six spaces on one side of the Mancala board are empty."+
 				"\nThe player who still has pieces on his side of the board when the game ends captures all of those pieces."+
-				"\nThe pieces in each store are counted, and the player with the most pieces is declared the winner.");
+				"\nThe pieces in each store are counted, and the player with the most pieces is declared the winner." +
+				"\n\n\tCredits:" +
+				"\nCoded by:" +
+				"\n    Rebecca Posner and Andrew Sigh" +
+				"\n\nHelpful Resources:" +
+				"\n    Stackoverflow.com" +
+				"\n    Java2s.com" +
+				"\n    Java-swing-tips.blogspot.com" +
+				"\n    FlamingText.com");
 		instrArea.setEditable(false);
 		return instrArea;
+
 	}
-	
-	public void showFrame(JFrame frame1)
-	{
+
+	public void showFrame(JFrame frame1) {
 		Container contain = frame1.getContentPane();
 		contain.setLayout(new FlowLayout());
-        JPanel panel1 = new JPanel();
-        
-        JRadioButton onePlayer = new JRadioButton("1 Player");
-        JRadioButton twoPlayer = new JRadioButton("2 Player");
-        JButton startGame = new JButton("Start Game!");
-        JButton instructions = new JButton("How To Play Mancala");
-        
-        onePlayer.addActionListener(this);
-        twoPlayer.addActionListener(this);
-        startGame.addActionListener(this);
-        instructions.addActionListener(this);
-        
-        ButtonGroup group = new ButtonGroup();
-        group.add(onePlayer);
-        group.add(twoPlayer);
-        group.add(startGame);
-        group.add(instructions);
-        
-        panel1.add(onePlayer);
-        panel1.add(twoPlayer);
-        panel1.add(startGame);
-        panel1.add(instructions);
-        
-        ClassLoader clder = this.getClass().getClassLoader();
+		JPanel panel1 = new JPanel();
+
+		onePlayer = new JRadioButton("1 Player");
+		twoPlayer = new JRadioButton("2 Player");
+		startGame = new JButton("Start Game!");
+		instructions = new JButton("How To Play Mancala");
+		
+		onePlayer.setSelected(true);
+
+		onePlayer.addActionListener(this);
+		twoPlayer.addActionListener(this);
+		startGame.addActionListener(this);
+		instructions.addActionListener(this);
+
+		ButtonGroup group = new ButtonGroup();
+		group.add(onePlayer);
+		group.add(twoPlayer);
+		group.add(startGame);
+		group.add(instructions);
+
+		panel1.add(onePlayer);
+		panel1.add(twoPlayer);
+		panel1.add(startGame);
+		panel1.add(instructions);
+
+		ClassLoader clder = this.getClass().getClassLoader();
 		ImageIcon picture = new ImageIcon(clder.getResource("Mancala.png"));
         JLabel pictureLabel = new JLabel(picture);
         contain.add(pictureLabel);
-        contain.add(onePlayer);
-        contain.add(twoPlayer);
-        contain.add(startGame);
-        contain.add(instructions);
- 
-        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame1.setSize(1500, 800);
-        frame1.setVisible(true);
+		contain.add(onePlayer);
+		contain.add(twoPlayer);
+		contain.add(startGame);
+		contain.add(instructions);
 
+		// http://stackoverflow.com/questions/2442599/how-to-set-jframe-to-appear-centered-regardless-of-monitor-resolution
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		
+		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame1.setSize(600, 250);
+		frame1.setLocation(dim.width/2 - 300, dim.height/2 - 125);
+		frame1.setVisible(true);
 	}
-	
-	public void playerTurn()
+
+	//methods that decide player turn
+	public void playerTurn() 
 	{
 		int whoturn = (int)(Math.random() * 101);
 		if(whoturn > 50)
 		{
-			turn = 1;
-			//player 1's turn
+			turn = 1; //player 1's turn
 		}
 		else
 		{
-			turn = 2;
-			//player 2 or AI's turn
+			turn = 2; //player 2 or AI's turn
 		}
-		//methods that decide player turn
 	}
 	
+	//method that swaps the turn.
 	public void swapTurn()
 	{
 		if(turn == 1)
 		{
-			turn = 2;
-			//swaps from player 1 turn to p2/AI turn
+			turn = 2; //swaps from player 1 turn to p2/AI turn
 		}
 		else
 		{
-			turn = 1;
-			//swaps from p2/AI turn to Player1 turn
+			turn = 1;//swaps from p2/AI turn to Player1 turn
 		}
-		//method that swaps the turn.
+		
 	}
 }
+

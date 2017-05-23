@@ -1,37 +1,22 @@
-public class PlayerBase extends Holes
+public class PlayerBase extends Hole
 {
-	private int numStones;
-	private int pLoc;
+	private int stones;
+	private int loc;
 	
 	public PlayerBase(int l)
 	{
 		super(l);
-		numStones = 0;
-		setpLoc(l);
+		stones = 0;
+		setLoc(l);
 	}
 
-	public int getNumStones() 
+	public int compareResult(PlayerBase other)
 	{
-		return numStones;
-	}
-
-	public void setNumStones(int numStones) 
-	{
-		this.numStones = numStones;
-	}
-	
-	public void addStonesPerm(int added)
-	{
-		numStones += added;
-	}
-	
-	public int checkResult(PlayerBase other)
-	{
-		if (other.getNumStones() < this.getNumStones())
+		if (other.getStones() < this.getStones())
 		{
 			return 1;
 		}
-		else if (other.getNumStones() == this.getNumStones())
+		else if (other.getStones() == this.getStones())
 		{
 			return 0;
 		}
@@ -39,11 +24,4 @@ public class PlayerBase extends Holes
 			return -1;
 	}
 
-	public int getpLoc() {
-		return pLoc;
-	}
-
-	public void setpLoc(int pLoc) {
-		this.pLoc = pLoc;
-	}
 }

@@ -1,13 +1,16 @@
-
-public class Holes 
+import java.awt.Color;
+import javax.swing.*;
+public class Hole extends JButton
 {
 	private int stones;
 	private int loc;
+	private Color color;
 	
-	public Holes(int l)
+	public Hole(int l)
 	{
 		stones = 4;
 		loc = l;
+		color = Color.DARK_GRAY;
 	}
 	
 	public int getStones()
@@ -15,17 +18,17 @@ public class Holes
 		return stones;
 	}
 	
-	public void addStone(int num)
+	public void addStones(int num)
 	{
 		stones += num;
 	}
 	
-	public void addOneStone()
+	public void addStone()
 	{
 		stones++;
 	}
 	
-	public void removeStone(int removed)
+	public void removeStones(int removed)
 	{
 		stones -= removed;
 	}

@@ -1,4 +1,3 @@
-
 public class Board
 {
 //make sure to implement the methods where you gain another turn.
@@ -11,19 +10,19 @@ public class Board
 	//the player that has stones on his/her side at the end of the game
 	//pockets all of the stones that remain in his/her 6 holes
 	private PlayerBase userBase, enemyBase;
-	private Holes[] holes;
+	private Hole[] holes;
 	private int winNum;
-	private boolean Win;
+	
 	public Board()
 	{
 		winNum = 0;
-		holes = new Holes[14];
+		holes = new Hole[14];
 		for(int loop = 0; loop <= holes.length; loop++)
 		{
 			if(loop == 6 || loop == 13)
 				holes[loop] = new PlayerBase(loop);
 			else
-				holes[loop] = new Holes(loop);
+				holes[loop] = new Hole(loop);
 		}
 	}
 	
@@ -65,8 +64,7 @@ public class Board
 		}
 		if(numEmpty1 == 5)
 		{
-			winNum = userBase.checkResult(enemyBase);
-			Win = true;
+			winNum = userBase.compareResult(enemyBase);
 			moveAllStones(enemyBase);
 			//enemy player takes all stones on his/her side
 			return;
@@ -89,8 +87,7 @@ public class Board
 		}
 		if(numEmpty2 == 5)
 		{
-			winNum = userBase.checkResult(enemyBase);
-			Win = true;
+			winNum = userBase.compareResult(enemyBase);
 			moveAllStones(userBase);
 			//User takes all stones from his/her side and deposits into Storage
 			return;
@@ -99,20 +96,20 @@ public class Board
 	
 	public void moveAllStones(PlayerBase Storage)
 	{
-		if(Storage.equals(userBase) == true && Win == true)
+		if(Storage.equals(userBase) == true)
 		{
 			for(int x = 0; x <= 5; x++)
 			{
-				userBase.addStonesPerm(holes[x].getStones());
-				holes[x].removeStone(holes[x].getStones());
+				userBase.addStones(holes[x].getStones());
+				holes[x].removeStones(holes[x].getStones());
 			}
 		}
 		else
 		{
 			for(int y = 7; y < 13; y++)
 			{
-				enemyBase.addStonesPerm(holes[y].getStones());
-				holes[y].removeStone(holes[y].getStones());
+				enemyBase.addStones(holes[y].getStones());
+				holes[y].removeStones(holes[y].getStones());
 			}
 		}
 		//moves all stones to the players storage specified in parameter
@@ -121,93 +118,93 @@ public class Board
 		
 	}
 	
-	public void emptyCheck(int cellIndex)
+	public void getOppositeStones(int cellIndex)
 	{
 		if(holes[cellIndex].getStones() == 1)
 		{
 			if(cellIndex == 0)
 			{
-				userBase.addStonesPerm(holes[12].getStones());
-				userBase.addStonesPerm(holes[0].getStones());
-				holes[12].removeStone(holes[12].getStones());
-				holes[0].removeStone(holes[0].getStones());
+				userBase.addStones(holes[12].getStones());
+				userBase.addStones(holes[0].getStones());
+				holes[12].removeStones(holes[12].getStones());
+				holes[0].removeStones(holes[0].getStones());
 			}
 			if(cellIndex == 1)
 			{
-				userBase.addStonesPerm(holes[11].getStones());
-				userBase.addStonesPerm(holes[1].getStones());
-				holes[11].removeStone(holes[11].getStones());
-				holes[1].removeStone(holes[1].getStones());
+				userBase.addStones(holes[11].getStones());
+				userBase.addStones(holes[1].getStones());
+				holes[11].removeStones(holes[11].getStones());
+				holes[1].removeStones(holes[1].getStones());
 			}
 			if(cellIndex == 2)
 			{
-				userBase.addStonesPerm(holes[10].getStones());
-				userBase.addStonesPerm(holes[2].getStones());
-				holes[10].removeStone(holes[10].getStones());
-				holes[2].removeStone(holes[2].getStones());
+				userBase.addStones(holes[10].getStones());
+				userBase.addStones(holes[2].getStones());
+				holes[10].removeStones(holes[10].getStones());
+				holes[2].removeStones(holes[2].getStones());
 			}
 			if(cellIndex == 3)
 			{
-				userBase.addStonesPerm(holes[9].getStones());
-				userBase.addStonesPerm(holes[3].getStones());
-				holes[9].removeStone(holes[9].getStones());
-				holes[3].removeStone(holes[3].getStones());
+				userBase.addStones(holes[9].getStones());
+				userBase.addStones(holes[3].getStones());
+				holes[9].removeStones(holes[9].getStones());
+				holes[3].removeStones(holes[3].getStones());
 			}
 			if(cellIndex == 4)
 			{
-				userBase.addStonesPerm(holes[8].getStones());
-				userBase.addStonesPerm(holes[4].getStones());
-				holes[8].removeStone(holes[8].getStones());
-				holes[4].removeStone(holes[4].getStones());
+				userBase.addStones(holes[8].getStones());
+				userBase.addStones(holes[4].getStones());
+				holes[8].removeStones(holes[8].getStones());
+				holes[4].removeStones(holes[4].getStones());
 			}
 			if(cellIndex == 5)
 			{
-				userBase.addStonesPerm(holes[7].getStones());
-				userBase.addStonesPerm(holes[5].getStones());
-				holes[7].removeStone(holes[7].getStones());
-				holes[5].removeStone(holes[5].getStones());
+				userBase.addStones(holes[7].getStones());
+				userBase.addStones(holes[5].getStones());
+				holes[7].removeStones(holes[7].getStones());
+				holes[5].removeStones(holes[5].getStones());
 			}
 			if(cellIndex == 7)
 			{
-				userBase.addStonesPerm(holes[5].getStones());
-				userBase.addStonesPerm(holes[7].getStones());
-				holes[5].removeStone(holes[5].getStones());
-				holes[7].removeStone(holes[7].getStones());
+				userBase.addStones(holes[5].getStones());
+				userBase.addStones(holes[7].getStones());
+				holes[5].removeStones(holes[5].getStones());
+				holes[7].removeStones(holes[7].getStones());
 			}
 			if(cellIndex == 8)
 			{
-				userBase.addStonesPerm(holes[4].getStones());
-				userBase.addStonesPerm(holes[8].getStones());
-				holes[4].removeStone(holes[4].getStones());
-				holes[8].removeStone(holes[8].getStones());
+				userBase.addStones(holes[4].getStones());
+				userBase.addStones(holes[8].getStones());
+				holes[4].removeStones(holes[4].getStones());
+				holes[8].removeStones(holes[8].getStones());
 			}
 			if(cellIndex == 9)
 			{
-				userBase.addStonesPerm(holes[3].getStones());
-				userBase.addStonesPerm(holes[9].getStones());
-				holes[3].removeStone(holes[3].getStones());
-				holes[9].removeStone(holes[9].getStones());
+				userBase.addStones(holes[3].getStones());
+				userBase.addStones(holes[9].getStones());
+				holes[3].removeStones(holes[3].getStones());
+				holes[9].removeStones(holes[9].getStones());
 			}
 			if(cellIndex == 10)
 			{
-				userBase.addStonesPerm(holes[2].getStones());
-				userBase.addStonesPerm(holes[10].getStones());
-				holes[2].removeStone(holes[2].getStones());
-				holes[10].removeStone(holes[10].getStones());
+				userBase.addStones(holes[2].getStones());
+				userBase.addStones(holes[10].getStones());
+				holes[2].removeStones(holes[2].getStones());
+				holes[10].removeStones(holes[10].getStones());
 			}
 			if(cellIndex == 11)
 			{
-				userBase.addStonesPerm(holes[1].getStones());
-				userBase.addStonesPerm(holes[11].getStones());
-				holes[1].removeStone(holes[1].getStones());
-				holes[11].removeStone(holes[11].getStones());
+				userBase.addStones(holes[1].getStones());
+				userBase.addStones(holes[11].getStones());
+				holes[1].removeStones(holes[1].getStones());
+				holes[11].removeStones(holes[11].getStones());
 			}
 			if(cellIndex == 12)
 			{
-				userBase.addStonesPerm(holes[0].getStones());
-				userBase.addStonesPerm(holes[12].getStones());
-				holes[0].removeStone(holes[0].getStones());
-				holes[12].removeStone(holes[12].getStones());
+				userBase.addStones(holes[0].getStones());
+				userBase.addStones(holes[12].getStones());
+				holes[0].removeStones(holes[0].getStones());
+				holes[12].removeStones(holes[12].getStones()); 
 			}		
 		}
 		//this method checks if the last stone was placed into an empty cell.
@@ -217,21 +214,20 @@ public class Board
 		//to your storage.
 		
 	}
-	
+
 	public boolean extraTurn(int lastHole, int turn)
 	{
 		int last = lastHole;
-		int theTurn = turn;
-		//checks to see if last stone was put into player/enemy Mancala
-		//on the player/enemy respected turn
-		//displays extra turn graphic if extra turn is true
-		//if extraturn is true, grants another turn, else swaps turns like normal
+		int theTurn = turn; //checks to see if last stone was put into player/enemy Mancala
+							//on the player/enemy respected turn
+							//displays extra turn graphic if extra turn is true
+							//if extraturn is true, grants another turn, 
+							//else swaps turns like normal
 		if(lastStonePut(last) == 6 && theTurn == 1)
 		{
-			return true;
-			//needs another && statement inside the if statement
-			//to determine whose turn it is so that the player's
-			//storage will not be messed up
+			return true; //needs another && statement inside the if statement
+						 //to determine whose turn it is so that the player's
+						 //storage will not be messed up
 		}
 		else if (lastStonePut(lastHole) == 13 && theTurn == 2)
 		{
@@ -253,12 +249,15 @@ public class Board
 	
 	public void move() //player chooses cell by clicking on it
 	{
-		//player clicks cell he/she wants to move
-		//player cannot click on the STORAGE
-		//moves the number of stones
-		//removes number of stones from the cell
-		//swaps player turn
-		//needs to be incorporated in MAIN in order for the game to go on is 
-		//what I'm thinking
+		/*
+		 * player clicks cell he/she wants to move
+		 * player cannot click on the STORAGE
+		 * moves the number of stones
+		 * removes number of stones from the cell
+		 * swaps player turn
+		 * needs to be incorporated in MAIN in order for the game to go on
+		 */
 	}
+	
 }
+
