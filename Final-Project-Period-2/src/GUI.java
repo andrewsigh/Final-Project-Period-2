@@ -3,97 +3,58 @@ import java.awt.event.*;
 import javax.swing.*;
 //might be helpful at some point: (lots of tutorials and images)
 //http://www.java2s.com/Tutorial/Java/0260__Swing-Event/Catalog0260__Swing-Event.htm
-
-public class GUI implements ActionListener {
-	private JRadioButton onePlayer;
+ 
+public class GUI implements ActionListener
+{
+	protected JRadioButton onePlayer;
 	private JRadioButton twoPlayer;
 	private JButton startGame;
 	private JButton instructions;
 	private JTextArea instrArea;
 	private int turn;
-	private JFrame frame2;
-	private JMenuItem info;
-	private JMenuItem returnToMain;
-	private JFrame boardSpace;
-	private Container area;
-
-	public static void main(String[] args) {
+	protected static JFrame frame;
+ 
+	public static void main(String[] args)
+	{
 		GUI menu = new GUI();
-		JFrame frame = new JFrame("Mancala");
+		frame = new JFrame("Mancala");
 		menu.showInitFrame(frame);
 	}
-
+ 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void actionPerformed(ActionEvent event)
+	public void actionPerformed(ActionEvent event) // needs to be finished
 	{
 		Object o = event.getSource();
-		if (o.equals(instructions))
-		{
+		if (o.equals(instructions)) 
 			showInstructions();
-		}
-		else if (startGame.equals(o)) 
+		
+		else if (startGame.equals(o))
 		{
-			frame2.setVisible(false);
-			boardSpace = new JFrame();
-			area = boardSpace.getContentPane();
-			boardSpace.setTitle("Mancala!");
-			// This adds the Drop Down Menu stuff
-			JMenuBar dropDown = new JMenuBar();
-			boardSpace.setJMenuBar(dropDown);
-			JMenu Options = new JMenu("Options");
-			info = new JMenuItem("Instructions");
-			dropDown.add(Options);
-			returnToMain = new JMenuItem("Return to Main Menu");
-			Options.add(info);
-			Options.add(returnToMain);
-			info.addActionListener(this);
-			returnToMain.addActionListener(this);
-			// test code -- ignore
-			// JCheckBoxMenuItem checkAction = new
-			// JCheckBoxMenuItem("Check Action");
-			// Options.add(checkAction);
-			ClassLoader loader = this.getClass().getClassLoader();
-			ImageIcon boardPic = new ImageIcon(
-					loader.getResource("FinalBoard.png"));
-			JLabel label = new JLabel(boardPic);
-			area.add(label);
-			boardSpace.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			boardSpace.setSize(boardPic.getIconWidth(),
-					boardPic.getIconHeight());
-			Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-			boardSpace.setLocation(dim.width / 2 - boardPic.getIconWidth() / 2,
-					dim.height / 2 - boardPic.getIconHeight() / 2);
-			boardSpace.setVisible(true);
-			boardSpace.setResizable(false);
+			frame.setVisible(false);
+			BoardSpace myBoard = new BoardSpace();
+			
+			if (onePlayer.equals(o)) 
+			{
+				//AI comp = new AI();
+			}
+			else if (twoPlayer.equals(o)) 
+			{
+				
+			}
 		} 
-		else if (info.equals(o))
-		{
-			showInstructions();
-		}
-		else if (returnToMain.equals(o))
-		{
-			boardSpace.setVisible(false);
-			frame2.setVisible(true);
-			// it doesn't let you go back to the game so we need to fix;
-		}
-		if (onePlayer.equals(o)) 
-		{
-		} 
-		else if (twoPlayer.equals(o)) 
-		{
-		}
 	}
-
+ 
 	/*
 	 * returns JTextArea with Mancala Game Instructions sets the JTextArea to
 	 * uneditable
 	 */
-	public JTextArea instructionsDisplay() {
+	public JTextArea instructionsDisplay() 
+	{
 		JTextArea instrArea = new JTextArea(
 				"\tHow to Play:\n"
 						+ "\n\tInitial Board Setup:"
@@ -118,7 +79,7 @@ public class GUI implements ActionListener {
 		instrArea.setEditable(false);
 		return instrArea;
 	}
-
+ 
 	/*
 	 * help from:
 	 * http://stackoverflow.com/questions/2442599/how-to-set-jframe-to
@@ -128,46 +89,54 @@ public class GUI implements ActionListener {
 	 * to start game user can select either one-player mode, which creates an
 	 * AI, or two-player mode
 	 */
-	public void showInitFrame(JFrame frame1) {
+	public void showInitFrame(JFrame frame1) 
+	{
 		Container contain = frame1.getContentPane();
-		frame2 = frame1;
-		frame1.setTitle("Main Menu");
 		contain.setLayout(new FlowLayout());
 		JPanel panel1 = new JPanel();
+		
 		onePlayer = new JRadioButton("1 Player");
 		twoPlayer = new JRadioButton("2 Player");
 		startGame = new JButton("Start Game!");
 		instructions = new JButton("How To Play Mancala");
+		
 		onePlayer.setSelected(true);
+		
 		onePlayer.addActionListener(this);
 		twoPlayer.addActionListener(this);
 		startGame.addActionListener(this);
 		instructions.addActionListener(this);
+		
 		ButtonGroup group = new ButtonGroup();
 		group.add(onePlayer);
 		group.add(twoPlayer);
 		group.add(startGame);
 		group.add(instructions);
+		
 		panel1.add(onePlayer);
 		panel1.add(twoPlayer);
 		panel1.add(startGame);
 		panel1.add(instructions);
+		
 		ClassLoader clder = this.getClass().getClassLoader();
 		ImageIcon picture = new ImageIcon(clder.getResource("Mancala.png"));
 		JLabel pictureLabel = new JLabel(picture);
+		
 		contain.add(pictureLabel);
 		contain.add(onePlayer);
 		contain.add(twoPlayer);
 		contain.add(startGame);
 		contain.add(instructions);
+		
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame1.setSize(600, 250);
-		frame1.setResizable(false);
-		frame1.setLocation(dim.width / 2 - 300, dim.height / 2 - 125);
-		frame1.setVisible(true);
+		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(600, 250);
+		frame.setResizable(false);
+		frame.setLocation(dim.width / 2 - 300, dim.height / 2 - 125);
+		frame.setVisible(true);
 	}
-
+ 
 	/*
 	 * decides player turn if turn = 1, player 1's turn if turn = 2, player 2 or
 	 * AI's turn
@@ -180,41 +149,34 @@ public class GUI implements ActionListener {
 			turn = 2;
 		}
 	}
-
+ 
 	/*
 	 * swaps the turn if turn == 1, change turn to 2 (changes from p1's turn to
 	 * p2/AI's turn else, change turn to 1 (changes from p2/AI's turn to p1)
 	 */
-	public void swapTurn() {
-		if (turn == 1) {
+	public void swapTurn() 
+	{
+		if (turn == 1)
 			turn = 2;
-		} else {
+		else 
 			turn = 1;
-		}
 	}
-
+ 
+	//displays Instructions in separate window
 	public void showInstructions() 
 	{
 		JFrame f = new JFrame();
 		Container c = f.getContentPane();
+		
 		instrArea = instructionsDisplay();
 		c.add(instrArea);
+		
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		
 		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		f.setSize(585, 510);
 		f.setResizable(false);
 		f.setLocation(dim.width / 2 - 292, dim.height / 2 - 255);
 		f.setVisible(true);
-		// displays instructions
-		// make into a method and repeat the code.
 	}
-	
-	
-	//mouseListener component, use getLocationOnScreen() and make that match with
-	//the coordinates of the image
-	//after click, SOP mouse location
-	//needs click center and radius, find the pattern in the spacing
-	//board needs to talk to startmenu
-	//gui needs methods to read in mouselisteners
-	
 }
