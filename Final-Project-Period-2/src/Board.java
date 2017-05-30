@@ -146,6 +146,7 @@ public class Board
 
 	public void move() // player chooses cell by clicking on it
 	{
+		
 		/*
 		 * player clicks cell he/she wants to move player cannot click on the
 		 * STORAGE moves the number of stones removes number of stones from the

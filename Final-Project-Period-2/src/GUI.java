@@ -6,8 +6,6 @@ import javax.swing.*;
  
 public class GUI implements ActionListener
 {
-	protected JRadioButton onePlayer;
-	private JRadioButton twoPlayer;
 	private JButton startGame;
 	private JButton instructions;
 	private JTextArea instrArea;
@@ -36,16 +34,7 @@ public class GUI implements ActionListener
 		else if (startGame.equals(o))
 		{
 			frame.setVisible(false);
-			BoardSpace myBoard = new BoardSpace();
-			
-			if (onePlayer.equals(o)) 
-			{
-				//AI comp = new AI();
-			}
-			else if (twoPlayer.equals(o)) 
-			{
-				
-			}
+			BoardSpace myBoard = new BoardSpace();		
 		} 
 	}
  
@@ -95,26 +84,15 @@ public class GUI implements ActionListener
 		contain.setLayout(new FlowLayout());
 		JPanel panel1 = new JPanel();
 		
-		onePlayer = new JRadioButton("1 Player");
-		twoPlayer = new JRadioButton("2 Player");
 		startGame = new JButton("Start Game!");
 		instructions = new JButton("How To Play Mancala");
 		
-		onePlayer.setSelected(true);
-		
-		onePlayer.addActionListener(this);
-		twoPlayer.addActionListener(this);
 		startGame.addActionListener(this);
 		instructions.addActionListener(this);
 		
 		ButtonGroup group = new ButtonGroup();
-		group.add(onePlayer);
-		group.add(twoPlayer);
 		group.add(startGame);
 		group.add(instructions);
-		
-		panel1.add(onePlayer);
-		panel1.add(twoPlayer);
 		panel1.add(startGame);
 		panel1.add(instructions);
 		
@@ -123,8 +101,6 @@ public class GUI implements ActionListener
 		JLabel pictureLabel = new JLabel(picture);
 		
 		contain.add(pictureLabel);
-		contain.add(onePlayer);
-		contain.add(twoPlayer);
 		contain.add(startGame);
 		contain.add(instructions);
 		

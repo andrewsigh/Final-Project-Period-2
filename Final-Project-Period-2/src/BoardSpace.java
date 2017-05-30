@@ -14,7 +14,8 @@ public class BoardSpace extends GUI implements MouseListener //implements Action
 	
 	private int xPos;
 	private int yPos;
-	private JTextArea test;
+	private int holeSelected;
+	private ImageIcon boardPic;
 		
 	public BoardSpace()
 	{
@@ -42,21 +43,23 @@ public class BoardSpace extends GUI implements MouseListener //implements Action
 		// JCheckBoxMenuItem("Check Action");
 		// Options.add(checkAction);
 		ClassLoader loader = this.getClass().getClassLoader();
-		ImageIcon boardPic = new ImageIcon(loader.getResource("FinalBoard.png"));
+		boardPic = new ImageIcon(loader.getResource("FinalBoard.png"));
 		JLabel label = new JLabel(boardPic);
-		
-		area.add(label);
+		label.setSize(boardPic.getIconWidth(), boardPic.getIconHeight());
 		
 		boardSpace.addMouseListener(this);
 		
 		boardSpace.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		boardSpace.setSize(boardPic.getIconWidth(),	boardPic.getIconHeight());
+		boardSpace.setSize(boardPic.getIconWidth(),	boardPic.getIconHeight() + 55);
 		
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		
 		boardSpace.setLocation(dim.width / 2 - boardPic.getIconWidth() / 2,dim.height / 2 - boardPic.getIconHeight() / 2);
 		boardSpace.setVisible(true);
 		boardSpace.setResizable(false);
+		CreateTextArea();
+		
+		area.add(label);
 	}
 	
 	public void actionPerformed(ActionEvent event)
@@ -69,7 +72,6 @@ public class BoardSpace extends GUI implements MouseListener //implements Action
 		else if (returnToMain.equals(o)) 
 		{
 			boardSpace.setVisible(false);
-			onePlayer.setSelected(true);
 			frame.setVisible(true);
 		}
 	}
@@ -97,16 +99,17 @@ public class BoardSpace extends GUI implements MouseListener //implements Action
 	
 	public int checkHoleClicked()
 	{
-		int xIncrement = 123;
+		int xIncrement = 127;
 		//xincrement starts at left most point of board
 		//xincrement will move on to next circle on board if coords do not match
 		
-		if(yPos >= 230 && yPos <= 310)
+		if(yPos >= 260 && yPos <= 340)
 		{
 			for(int holeIndex = 0; holeIndex <= 5; holeIndex++)
 			{
 				if(xPos > xIncrement && xPos < xIncrement + 82)
 				{
+					holeSelected = holeIndex;
 					return holeIndex;
 				}
 				else
@@ -115,12 +118,13 @@ public class BoardSpace extends GUI implements MouseListener //implements Action
 				}
 			}	
 		}
-		else if(yPos <= 152 && yPos >= 65)
+		else if(yPos <= 185 && yPos >= 102)
 		{
 			for(int holeIndex = 12; holeIndex >= 7; holeIndex--)
 			{
 				if(xPos > xIncrement && xPos < xIncrement + 82)
 				{
+					holeSelected = holeIndex;
 					return holeIndex;
 				}
 				else
@@ -132,10 +136,22 @@ public class BoardSpace extends GUI implements MouseListener //implements Action
 		return -1;
 	}
 	
-	
-	
-	
-	
+	public void CreateTextArea()
+	//add parameters for the bounds of the parameter,
+	//maybe set up a for loop within the constructor of boardspace in order
+	//to initialize all 14 of the areas,
+	//make sure to make 2 separate creattexts that create userbase and enemybase
+	{
+		JLabel area1 = new JLabel("1");
+		boardSpace.setLayout(null);
+		area1.setFont(new Font(area1.getFont().getName(), Font.PLAIN, 100));
+		area1.setBounds(135, 205, 80, 80);
+		//area.setbounds(x parameter, y parameter, width, height);
+		//sets the center with float parameter
+		area1.setAlignmentX(.5f);
+		area1.setAlignmentY(.5f);
+		boardSpace.getContentPane().add(area1);
+	}
 	/*
 	protected void paintComponent(Graphics g, Image board)
 	{

@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
  
-public class Hole extends JButton
+public class Hole
 {
 	protected int stones;
 	protected int loc;
